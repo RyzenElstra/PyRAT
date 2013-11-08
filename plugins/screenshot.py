@@ -4,15 +4,12 @@
  
 from PyQt4.QtGui import QApplication, QPixmap
 from os import environ, mkdir, listdir
-from sys import argv
+from sys import argv, platform
 from time import strftime, gmtime
-from platform import system
  
 class Screenshot(object):
-        def __init__(self):  
-                os = system()
-                
-                if os == 'Windows':
+        def __init__(self):
+                if platform == 'win32':
                         self.usuario = environ['USERNAME']
                 else:
                         self.usuario = environ['USER']
