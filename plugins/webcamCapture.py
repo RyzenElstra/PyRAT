@@ -6,9 +6,16 @@ from pygame.image import save
 import pygame.camera as camera
 from os import environ, mkdir, listdir
 from time import strftime, gmtime
+from platform import system
  
 class WebcamCapture(object):
         def __init__(self):
+                os = system()
+                
+                if os == 'Windows':
+                        self.usuario = environ['USERNAME']
+                else:
+                        self.usuario = environ['USER']
  
                 camera.init()
                 misWebcams = camera.list_cameras()
@@ -40,8 +47,6 @@ class WebcamCapture(object):
                         print e
  
         def guardarCaptura(self):
-                self.usuario = environ['USER']
- 
                 if not 'webcam' in listdir('./'):
                         mkdir('webcam')
  
