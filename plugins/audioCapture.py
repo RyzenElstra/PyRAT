@@ -9,6 +9,7 @@ from time import strftime, gmtime
 from platform import system
 
 class AudioCapture(object):
+	
 	def __init__(self):
 		os = system()
 		
