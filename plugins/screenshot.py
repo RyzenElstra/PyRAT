@@ -9,6 +9,7 @@ from time import strftime, gmtime
  
 class Screenshot(object):
         def __init__(self):
+         
                 if platform == 'win32':
                         self.usuario = environ['USERNAME']
                 else:
