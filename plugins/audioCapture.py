@@ -6,11 +6,22 @@ from alsaaudio import PCM, PCM_CAPTURE, PCM_FORMAT_S16_LE
 import wave
 from os import environ, mkdir, listdir
 from time import strftime, gmtime
+from platform import system
 
 class AudioCapture(object):
 	def __init__(self):
-		self.capturarAudio()
-		self.guardarAudio()
+		os = system()
+		
+		if os == 'Windows':
+			self.usuario = environ['USERNAME']
+		else:
+			self.usuario = environ['USER']
+		
+		try:
+			self.capturarAudio()
+			self.guardarAudio()
+		except Exception as e:
+			print e
 
 	def capturarAudio(self):
 		self.captura = PCM(PCM_CAPTURE)
@@ -20,13 +31,11 @@ class AudioCapture(object):
 		self.captura.setperiodsize(1024) # default 32
 
 	def guardarAudio(self):
-		usuario = environ['USER']
-
 		if not 'audio' in listdir('./'):
 			mkdir('audio')
 
 		tiempo = strftime("%d %b %Y_%H:%M:%S", gmtime())
-		miAudio = './audio/' + usuario + '_' + tiempo + '.wav'
+		miAudio = './audio/' + self.usuario + '_' + tiempo + '.wav'
 
 		audio = wave.open(miAudio, 'w')
 		audio.setnchannels(1)
