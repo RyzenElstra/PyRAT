@@ -6,10 +6,17 @@ from PyQt4.QtGui import QApplication, QPixmap
 from os import environ, mkdir, listdir
 from sys import argv
 from time import strftime, gmtime
+from platform import system
  
 class Screenshot(object):
         def __init__(self):  
-                self.usuario = environ['USER']
+                os = system()
+                
+                if os == 'Windows':
+                        self.usuario = environ['USERNAME']
+                else:
+                        self.usuario = environ['USER']
+                        
                 if not 'screenshot' in listdir('./'):
                         mkdir('screenshot')
  
