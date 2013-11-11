@@ -22,7 +22,7 @@ class Ui_GeoIPLocator(QWidget):
 		self.setMaximumSize(QSize(515, 370))
 
 		self.mapa = QWebView(self)
-		self.mapa.load(QUrl("http://underc0de.org/foro/Themes/underc0de/images/theme/logo.png"))
+		self.mapa.load(QUrl("bg.htm"))
 
 		etiquetaIP = QLabel(self)
 		etiquetaIP.setText("IP/DNS:")
@@ -158,6 +158,17 @@ class Ui_GeoIPLocator(QWidget):
 			self.buscaGeoIP()
 
 def main():
+	bg = """<html>
+	<body style="margin: 0px;">
+		<img style="-webkit-user-select: none; cursor: -webkit-zoom-in;" src="http://i39.tinypic.com/2luhrp.png" width="520" height="370">
+	</body>
+</html>
+	"""
+
+	f = open("bg.htm", "w")
+	f.write(bg)
+	f.close()
+
 	app = QApplication(sys.argv)
 	gil = Ui_GeoIPLocator()
 	gil.show()
