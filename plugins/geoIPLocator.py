@@ -104,7 +104,7 @@ class Ui_GeoIPLocator(QWidget):
 
 				country = split(countryPatrones[1], countrySplitted)[1]
 
-				self.info.append(flag)
+				self.info.append("Flag: " + flag)
 				self.info.append("Country: " + country)			
 
 			else:
