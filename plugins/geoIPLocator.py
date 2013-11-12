@@ -99,12 +99,13 @@ class Ui_GeoIPLocator(QWidget):
 				countryPatrones = ["alt.+title="," style.+> "]
 				
 				flag = split(countryPatrones[0], dataFinal)[0]
-				flag = self.url + flag[2:-2]
-				countrySplitted = split(countryPatrones[0], dataFinal)[1]
+				self.flag = self.url + flag[2:-2]
+				self.cambiaIcono()
 
+				countrySplitted = split(countryPatrones[0], dataFinal)[1]
 				country = split(countryPatrones[1], countrySplitted)[1]
 
-				self.info.append("Flag: " + flag)
+				self.info.append("Flag: " + self.flag)
 				self.info.append("Country: " + country)			
 
 			else:
@@ -120,6 +121,14 @@ class Ui_GeoIPLocator(QWidget):
 
 		for e in self.info:
 			print e
+
+	def cambiaIcono(self):
+		f = urllib2.urlopen(self.flag)
+		gif = open('flag.gif', 'wb')
+		gif.write(f.read())
+		f.close()
+		gif.close()
+		self.setWindowIcon(QIcon('flag.gif')) 
 
 	def creaMapa(self):
 
